@@ -20,16 +20,12 @@
     }
 
     header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
         margin-bottom: 50px;
     }
 
     .logo {
         font-size: 22px;
         font-weight: bold;
-        color: #111;
     }
 
     .logo span {
@@ -61,7 +57,8 @@
 
     .cta {
         display: inline-block;
-        margin-top: 25px;
+        margin-top: 20px;
+        margin-right: 10px;
         padding: 12px 20px;
         background-color: #111;
         color: #fff;
@@ -70,8 +67,15 @@
         border-radius: 4px;
     }
 
+    .cta.secondary {
+        background-color: transparent;
+        border: 1px solid #4f46e5;
+        color: #4f46e5;
+    }
+
     .cta:hover {
         background-color: #4f46e5;
+        color: #fff;
     }
 
     ul {
@@ -86,17 +90,46 @@
         margin-top: 30px;
     }
 
+    .social-proof {
+        background-color: #f9fafb;
+        padding: 20px;
+        border-left: 3px solid #4f46e5;
+        margin-top: 20px;
+    }
+
+    form {
+        margin-top: 20px;
+    }
+
+    input, textarea {
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+
+    button {
+        margin-top: 15px;
+        padding: 12px 20px;
+        background-color: #111;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #4f46e5;
+    }
+
     footer {
         margin-top: 70px;
         font-size: 12px;
         color: #777;
         border-top: 1px solid #eee;
         padding-top: 20px;
-    }
-
-    .email {
-        font-weight: bold;
-        color: #4f46e5;
     }
 
 </style>
@@ -116,18 +149,17 @@
     </h1>
 
     <p>
-        Vendor-agnostic firewall assessments designed to uncover overly permissive rules, configuration drift, and architectural weaknesses in real-world environments.
+        Vendor-agnostic firewall assessments designed to uncover overly permissive rules, configuration drift, and architectural weaknesses.
     </p>
 
-    <a href="mailto:contact@securelayerco.com" class="cta">
-        Request Your Firewall Assessment
-    </a>
+    <a href="#contact" class="cta">Request Your Firewall Assessment</a>
+    <a href="sample-report.pdf" class="cta secondary" target="_blank">View Sample Report</a>
 </section>
 
 <section class="section">
     <h2>What We Do</h2>
     <p>
-        SecureLayer provides structured firewall configuration reviews to identify risk exposure, improve policy control, and strengthen your overall security posture — without requiring direct access to your systems.
+        We analyze firewall configurations to identify security gaps, reduce risk exposure, and improve policy control — without requiring direct system access.
     </p>
 </section>
 
@@ -143,11 +175,11 @@
 <section class="section">
     <h2>What You Receive</h2>
     <ul>
-        <li>Structured risk analysis of your firewall ruleset</li>
+        <li>Structured risk analysis of firewall rules</li>
         <li>Identification of overly permissive or unused policies</li>
-        <li>Clear prioritization of security issues</li>
+        <li>Clear prioritization of findings</li>
         <li>Actionable remediation recommendations</li>
-        <li>Executive-friendly report for technical and business stakeholders</li>
+        <li>Executive-ready security report</li>
     </ul>
 </section>
 
@@ -156,35 +188,59 @@
     <ul>
         <li>You provide a firewall configuration export</li>
         <li>We perform a structured offline analysis</li>
-        <li>You receive a detailed report with findings and recommendations</li>
+        <li>You receive a detailed report with findings</li>
     </ul>
 
     <p>
-        Typical turnaround: <strong>3–5 business days</strong><br>
-        No system access required. Fully confidential handling of configurations.
+        Turnaround: <strong>3–5 business days</strong><br>
+        No system access required. Fully confidential.
     </p>
+</section>
+
+<section class="section">
+    <h2>Experience</h2>
+
+    <div class="social-proof">
+        <p>
+            Experience supporting security initiatives across industries such as financial services, healthcare, and enterprise environments.
+        </p>
+
+        <p>
+            Projects include firewall policy reviews, architecture improvements, and risk reduction strategies in production environments.
+        </p>
+    </div>
+
 </section>
 
 <section class="section">
     <h2>About</h2>
     <p>
-        Security engineer with experience supporting global environments and managing firewall architectures across complex enterprise infrastructures.
+        Security engineer with experience managing firewall architectures in global environments.
     </p>
 
     <p>
-        Experience includes technologies such as Cisco, Fortinet, and Palo Alto, as well as widely adopted SMB platforms used across growing organizations in the U.S. market.
+        Technologies include Cisco, Fortinet, and Palo Alto, as well as widely adopted SMB platforms used across growing organizations in the U.S.
     </p>
 
     <p>
-        Focused on delivering structured, practical, and actionable security improvements — not theoretical recommendations.
+        Focused on practical, actionable improvements — not theoretical recommendations.
     </p>
 </section>
 
-<section class="section">
+<section class="section" id="contact">
     <h2>Contact</h2>
+
     <p>
-        Email: <span class="email">contact@securelayerco.com</span>
+        Prefer email? contact@securelayerco.com
     </p>
+
+    <form action="mailto:contact@securelayerco.com" method="post" enctype="text/plain">
+        <input type="text" name="Name" placeholder="Your Name" required>
+        <input type="email" name="Email" placeholder="Your Email" required>
+        <textarea name="Message" rows="5" placeholder="Tell me about your environment or needs"></textarea>
+        <button type="submit">Send Request</button>
+    </form>
+
 </section>
 
 <footer>
