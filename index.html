@@ -124,6 +124,11 @@
         background-color: #4f46e5;
     }
 
+    #form-status {
+        margin-top: 15px;
+        font-size: 14px;
+    }
+
     footer {
         margin-top: 70px;
         font-size: 12px;
@@ -131,7 +136,6 @@
         border-top: 1px solid #eee;
         padding-top: 20px;
     }
-
 </style>
 </head>
 
@@ -209,7 +213,6 @@
             Projects include firewall policy reviews, architecture improvements, and risk reduction strategies in production environments.
         </p>
     </div>
-
 </section>
 
 <section class="section">
@@ -234,20 +237,17 @@
         Prefer email? contact@securelayerco.com
     </p>
 
-   <form action="https://formspree.io/f/mlgaegqn" method="POST">
+    <form id="contact-form">
+        <input type="text" name="name" placeholder="Your Name" required>
 
-    <input type="hidden" name="_next" value="https://securelayerco.com/thanks.html">
+        <input type="email" name="email" placeholder="Your Email" required>
 
-    <input type="text" name="name" placeholder="Your Name" required>
+        <textarea name="message" rows="5" placeholder="Tell me about your environment or needs"></textarea>
 
-    <input type="email" name="email" placeholder="Your Email" required>
+        <button type="submit">Send Request</button>
+    </form>
 
-    <textarea name="message" rows="5" placeholder="Tell me about your environment or needs"></textarea>
-
-    <button type="submit">Send Request</button>
-
-</form>
-
+    <p id="form-status"></p>
 </section>
 
 <footer>
@@ -255,6 +255,43 @@
 </footer>
 
 </div>
+
+<script>
+const form = document.getElementById("contact-form");
+const status = document.getElementById("form-status");
+
+form.addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    status.textContent = "Sending...";
+    status.style.color = "#333";
+
+    const data = new FormData(form);
+
+    try {
+        const response = await fetch("https://formspree.io/f/mlgaegqn", {
+            method: "POST",
+            body: data,
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+
+        if (response.ok) {
+            form.reset();
+            status.textContent = "Message sent successfully. I'll get back to you within 24–48 hours.";
+            status.style.color = "#16a34a";
+        } else {
+            status.textContent = "Something went wrong. Please try again or email directly.";
+            status.style.color = "#dc2626";
+        }
+
+    } catch (error) {
+        status.textContent = "Network error. Please try again later.";
+        status.style.color = "#dc2626";
+    }
+});
+</script>
 
 </body>
 </html>
