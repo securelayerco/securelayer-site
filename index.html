@@ -474,7 +474,7 @@
     <h2>Request Your Assessment</h2>
     <p class="section-intro">Tell us about your environment and we'll get back to you within one business day.</p>
     <div class="contact-wrap">
-      <form action="https://formspree.io/f/mlgaegqn" method="POST">
+      <form id="contactForm">
         <div class="form-row">
           <div class="form-group">
             <label for="name">Full Name</label>
@@ -506,8 +506,73 @@
           <textarea id="message" name="message" placeholder="Brief description of your setup, number of users, any specific concerns..."></textarea>
         </div>
         <p class="form-note">Prefer email? Reach us directly at <a href="mailto:contact@securelayerco.com">contact@securelayerco.com</a></p>
-        <button type="submit">Send Request →</button>
+        <button type="submit" id="submitBtn">Send Request &rarr;</button>
+
+        <div id="successMsg" style="display:none;margin-top:24px;padding:22px 26px;
+             background:rgba(39,174,96,0.12);border:1px solid rgba(39,174,96,0.4);
+             border-left:4px solid #27AE60;border-radius:3px;">
+          <p style="font-size:1.05rem;color:#2ecc71;font-weight:600;margin-bottom:6px;">
+            &#10003; Message sent successfully!
+          </p>
+          <p style="font-size:0.95rem;color:var(--gray);">
+            Thank you for reaching out. We&rsquo;ll get back to you within one business day.
+          </p>
+        </div>
+
+        <div id="errorMsg" style="display:none;margin-top:24px;padding:22px 26px;
+             background:rgba(192,57,43,0.12);border:1px solid rgba(192,57,43,0.4);
+             border-left:4px solid #C0392B;border-radius:3px;">
+          <p style="font-size:1.05rem;color:#e74c3c;font-weight:600;margin-bottom:6px;">
+            &#10007; Something went wrong.
+          </p>
+          <p style="font-size:0.95rem;color:var(--gray);">
+            Please try again or contact us directly at
+            <a href="mailto:contact@securelayerco.com" style="color:var(--accent);">contact@securelayerco.com</a>
+          </p>
+        </div>
       </form>
+
+      <script>
+        document.getElementById("contactForm").addEventListener("submit", async function(e) {
+          e.preventDefault();
+          var btn = document.getElementById("submitBtn");
+          var successMsg = document.getElementById("successMsg");
+          var errorMsg = document.getElementById("errorMsg");
+          successMsg.style.display = "none";
+          errorMsg.style.display = "none";
+          btn.disabled = true;
+          btn.textContent = "Sending...";
+          btn.style.opacity = "0.7";
+          var formData = {
+            name:     document.getElementById("name").value,
+            company:  document.getElementById("company").value,
+            email:    document.getElementById("email").value,
+            platform: document.getElementById("platform").value,
+            message:  document.getElementById("message").value
+          };
+          try {
+            var response = await fetch("https://formspree.io/f/mlgaegqn", {
+              method: "POST",
+              headers: { "Content-Type": "application/json", "Accept": "application/json" },
+              body: JSON.stringify(formData)
+            });
+            if (response.ok) {
+              successMsg.style.display = "block";
+              successMsg.scrollIntoView({ behavior: "smooth", block: "nearest" });
+              document.getElementById("contactForm").reset();
+            } else {
+              errorMsg.style.display = "block";
+            }
+          } catch(err) {
+            errorMsg.style.display = "block";
+          } finally {
+            btn.disabled = false;
+            btn.textContent = "Send Request →";
+            btn.style.opacity = "1";
+          }
+        });
+      </script>
+
     </div>
   </section>
 
@@ -524,11 +589,4 @@
         <li><a href="#services">Services</a></li>
         <li><a href="#how">How It Works</a></li>
         <li><a href="#experience">Experience</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-    <div class="footer-copy">© 2026 Secure Layer Co. All rights reserved.</div>
-  </footer>
-
-</body>
-</html>
+        <li><a href="#contact">Co
