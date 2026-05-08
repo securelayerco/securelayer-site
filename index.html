@@ -309,6 +309,52 @@
 
     @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
 
+    /* RESOURCES */
+    .resource-card {
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 40px; align-items: center;
+      background: rgba(27,58,92,0.2);
+      border: 1px solid rgba(46,134,171,0.25);
+      padding: 40px 48px;
+      position: relative; overflow: hidden;
+    }
+    .resource-card::before {
+      content: ""; position: absolute; top: 0; left: 0; right: 0;
+      height: 3px; background: var(--accent);
+    }
+    .resource-card::after {
+      content: ""; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 4px; background: var(--accent);
+    }
+    .resource-label {
+      display: inline-block; background: var(--accent-dim);
+      border: 1px solid rgba(46,134,171,0.4);
+      color: var(--accent); font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 2px; margin-bottom: 14px;
+    }
+    .resource-card h3 {
+      font-family: var(--font-head); font-size: 1.6rem;
+      font-weight: 700; letter-spacing: 0.02em; margin-bottom: 12px;
+    }
+    .resource-card p { color: var(--gray); font-size: 1rem; line-height: 1.75; max-width: 580px; }
+    .resource-features { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+    .resource-feature {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 0.92rem; color: var(--gray);
+    }
+    .resource-feature .dot { color: var(--accent); font-size: 1rem; }
+    .resource-cta { display: flex; flex-direction: column; align-items: center; gap: 12px; flex-shrink: 0; }
+    .resource-price {
+      font-family: var(--font-head); font-size: 2.6rem; font-weight: 700;
+      color: var(--accent); line-height: 1;
+    }
+    .resource-price span { font-size: 1rem; color: var(--gray); font-family: var(--font-body); font-weight: 400; display: block; text-align: center; margin-top: 4px; }
+    @media (max-width: 768px) {
+      .resource-card { grid-template-columns: 1fr; gap: 24px; padding: 28px 20px; }
+      .resource-cta { align-items: flex-start; }
+    }
+
     @media (max-width: 768px) {
       nav { padding: 14px 20px; }
       nav ul { display: none; }
@@ -464,6 +510,37 @@
         <div class="industry-item"><span>🛍️ E-commerce & Retail</span></div>
         <div class="industry-item"><span>⚖️ Professional Services</span></div>
         <div class="industry-item"><span>🏭 Manufacturing</span></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- RESOURCES -->
+  <section id="resources">
+    <div class="section-label">Resources</div>
+    <h2>Free Tools & Paid Guides</h2>
+    <p class="section-intro">Practical resources built from real engagements — not vendor documentation.</p>
+    <div class="resource-card">
+      <div>
+        <span class="resource-label">PDF · Instant Download</span>
+        <h3>FortiGate Hardening & Audit Pack</h3>
+        <p>90+ field-tested checks across 8 hardening domains. Includes audit tracking template, remediation priority matrix with SLAs, and a recommended VLAN architecture for SMB environments. The same framework we use in paid engagements.</p>
+        <div class="resource-features">
+          <span class="resource-feature"><span class="dot">→</span> Management Interface Security</span>
+          <span class="resource-feature"><span class="dot">→</span> Rule Base Audit</span>
+          <span class="resource-feature"><span class="dot">→</span> Network Segmentation</span>
+          <span class="resource-feature"><span class="dot">→</span> VPN Configuration</span>
+          <span class="resource-feature"><span class="dot">→</span> Logging & Monitoring</span>
+          <span class="resource-feature"><span class="dot">→</span> IPS & Threat Prevention</span>
+          <span class="resource-feature"><span class="dot">→</span> FortiGuard Subscriptions & Firmware</span>
+          <span class="resource-feature"><span class="dot">→</span> Audit Tracking Template (Pass/Fail/Notes)</span>
+        </div>
+      </div>
+      <div class="resource-cta">
+        <div class="resource-price">$39<span>One-time · Instant access</span></div>
+        <a href="https://securelayer.gumroad.com/l/mbjst" target="_blank" rel="noopener" class="btn-primary">Get the Pack</a>
+        <a href="https://github.com/securelayerco/fortigate-hardening-checklist" target="_blank" rel="noopener" style="font-size:1rem; color:var(--gray); text-decoration:none; text-align:center; transition:color 0.2s;" onmouseover="this.style.color='var(--white)'" onmouseout="this.style.color='var(--gray)'">Free checklist on GitHub →</a>
       </div>
     </div>
   </section>
