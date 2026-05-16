@@ -549,16 +549,16 @@ footer nav ul a:hover { color: var(--white); }
       <div class="form-row">
         <div class="form-group">
           <label for="name" data-es="Nombre" data-en="Name">Nombre</label>
-          <input type="text" id="name" name="name" placeholder="Tu nombre" required />
+          <input type="text" id="name" name="name" data-placeholder-es="Tu nombre" data-placeholder-en="Your name" placeholder="Tu nombre" required />
         </div>
         <div class="form-group">
           <label for="company" data-es="Empresa" data-en="Company">Empresa</label>
-          <input type="text" id="company" name="company" placeholder="Tu empresa" />
+          <input type="text" id="company" name="company" data-placeholder-es="Tu empresa" data-placeholder-en="Your company" placeholder="Tu empresa" />
         </div>
       </div>
       <div class="form-group">
         <label for="email" data-es="Email" data-en="Email">Email</label>
-        <input type="email" id="email" name="email" placeholder="tu@empresa.com" required />
+        <input type="email" id="email" name="email" data-placeholder-es="tu@empresa.com" data-placeholder-en="you@company.com" placeholder="tu@empresa.com" required />
       </div>
       <div class="form-group">
         <label for="need" data-es="¿Qué necesitás?" data-en="What do you need?">¿Qué necesitás?</label>
@@ -573,7 +573,7 @@ footer nav ul a:hover { color: var(--white); }
       </div>
       <div class="form-group">
         <label for="message" data-es="Contanos tu situación" data-en="Tell us about your situation">Contanos tu situación</label>
-        <textarea id="message" name="message" placeholder="Describí brevemente tu infraestructura y qué te preocupa..."></textarea>
+        <textarea id="message" name="message" data-placeholder-es="Describí brevemente tu infraestructura y qué te preocupa..." data-placeholder-en="Briefly describe your infrastructure and what concerns you..." placeholder="Describí brevemente tu infraestructura y qué te preocupa..."></textarea>
       </div>
       <button type="submit" data-es="Enviar mensaje" data-en="Send message">Enviar mensaje</button>
     </form>
@@ -618,6 +618,9 @@ function setLang(lang) {
     } else {
       el.textContent = text;
     }
+  });
+  document.querySelectorAll('[data-placeholder-' + lang + ']').forEach(el => {
+  el.placeholder = el.getAttribute('data-placeholder-' + lang);
   });
 
   // Nav CTA special case
